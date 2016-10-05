@@ -1,7 +1,6 @@
 ﻿Public Class Date_Box
     Public history As history
     Public isSelectedDelete As Boolean = False
-    Shared listMiniCard As New List(Of MiniCard) 'Record current display MiniCards
 
     Sub New(ByRef history As history, ByVal row As Integer, ByVal column As Integer, ByVal rowSpace As Integer, ByVal colunmSpace As Integer)
 
