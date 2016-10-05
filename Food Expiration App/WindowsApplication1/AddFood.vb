@@ -41,6 +41,7 @@ Public Class AddFood
     Private Sub lblSave_Click(sender As Object, e As EventArgs) Handles lblSave.Click
         If checkDataValidation() Then
             Dim ImagefileName As String = getImageUrl()
+            Dim state As String = "Available"
             Dim food As New Food(txtFoodName.Text, ComboBoxCategory.SelectedItem.ToString(), DateTimePicker1.Value, txtQuantity.Text, ImagefileName, txtDescription.Text)
             Dao.addFood(food)
             parentForm1.refreshCard()

@@ -28,11 +28,15 @@ Partial Class Form1
         Me.lblMinimize = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtSearch = New System.Windows.Forms.TextBox()
-        Me.History = New System.Windows.Forms.PictureBox()
+        Me.PBused = New System.Windows.Forms.PictureBox()
+        Me.PBExpired = New System.Windows.Forms.PictureBox()
+        Me.PBhistory = New System.Windows.Forms.PictureBox()
         Me.PBsearch = New System.Windows.Forms.PictureBox()
         Me.PBdelete = New System.Windows.Forms.PictureBox()
         Me.PBadd = New System.Windows.Forms.PictureBox()
-        CType(Me.History, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PBused, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PBExpired, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PBhistory, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBsearch, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBdelete, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBadd, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,7 +90,7 @@ Partial Class Form1
         '
         'txtSearch
         '
-        Me.txtSearch.Font = New System.Drawing.Font("微软雅黑", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtSearch.Font = New System.Drawing.Font("Microsoft YaHei", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtSearch.Location = New System.Drawing.Point(224, 83)
         Me.txtSearch.MaxLength = 50
         Me.txtSearch.Name = "txtSearch"
@@ -94,15 +98,37 @@ Partial Class Form1
         Me.txtSearch.TabIndex = 6
         Me.txtSearch.Text = "Search food by name..."
         '
-        'History
+        'PBused
         '
-        Me.History.BackColor = System.Drawing.Color.Transparent
-        Me.History.Image = Global.WindowsApplication1.My.Resources.Resources.history
-        Me.History.Location = New System.Drawing.Point(772, 44)
-        Me.History.Name = "History"
-        Me.History.Size = New System.Drawing.Size(99, 31)
-        Me.History.TabIndex = 8
-        Me.History.TabStop = False
+        Me.PBused.BackColor = System.Drawing.Color.Transparent
+        Me.PBused.Image = Global.WindowsApplication1.My.Resources.Resources.used_2
+        Me.PBused.Location = New System.Drawing.Point(44, 203)
+        Me.PBused.Name = "PBused"
+        Me.PBused.Size = New System.Drawing.Size(99, 31)
+        Me.PBused.TabIndex = 10
+        Me.PBused.TabStop = False
+        Me.PBused.Visible = False
+        '
+        'PBExpired
+        '
+        Me.PBExpired.BackColor = System.Drawing.Color.Transparent
+        Me.PBExpired.Image = Global.WindowsApplication1.My.Resources.Resources.Expired
+        Me.PBExpired.Location = New System.Drawing.Point(44, 137)
+        Me.PBExpired.Name = "PBExpired"
+        Me.PBExpired.Size = New System.Drawing.Size(99, 31)
+        Me.PBExpired.TabIndex = 9
+        Me.PBExpired.TabStop = False
+        Me.PBExpired.Visible = False
+        '
+        'PBhistory
+        '
+        Me.PBhistory.BackColor = System.Drawing.Color.Transparent
+        Me.PBhistory.Image = Global.WindowsApplication1.My.Resources.Resources.history
+        Me.PBhistory.Location = New System.Drawing.Point(772, 44)
+        Me.PBhistory.Name = "PBhistory"
+        Me.PBhistory.Size = New System.Drawing.Size(99, 31)
+        Me.PBhistory.TabIndex = 8
+        Me.PBhistory.TabStop = False
         '
         'PBsearch
         '
@@ -141,11 +167,12 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.Black
-        Me.BackgroundImage = Global.WindowsApplication1.My.Resources.Resources.background1
+        Me.BackColor = System.Drawing.Color.White
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1280, 720)
-        Me.Controls.Add(Me.History)
+        Me.Controls.Add(Me.PBused)
+        Me.Controls.Add(Me.PBExpired)
+        Me.Controls.Add(Me.PBhistory)
         Me.Controls.Add(Me.PBsearch)
         Me.Controls.Add(Me.txtSearch)
         Me.Controls.Add(Me.PBdelete)
@@ -157,7 +184,9 @@ Partial Class Form1
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Form1"
         Me.Text = "Form1"
-        CType(Me.History, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PBused, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PBExpired, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PBhistory, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PBsearch, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PBdelete, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PBadd, System.ComponentModel.ISupportInitialize).EndInit()
@@ -174,5 +203,7 @@ Partial Class Form1
     Friend WithEvents PBdelete As PictureBox
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents PBsearch As PictureBox
-    Friend WithEvents History As PictureBox
+    Friend WithEvents PBhistory As PictureBox
+    Friend WithEvents PBExpired As PictureBox
+    Friend WithEvents PBused As PictureBox
 End Class

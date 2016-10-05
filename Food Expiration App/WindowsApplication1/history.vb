@@ -1,4 +1,4 @@
-﻿Public Class Food
+﻿Public Class history
     Public id As Integer
     Public name As String
     Public category As String
@@ -6,7 +6,6 @@
     Public quantity As Int32
     Public imgURL As String
     Public description As String
-    Public state As String
 
     Sub New(ByVal id As Integer, ByVal name As String, ByVal category As String, ByVal expirationDate As Date, ByVal quantity As Int32, ByVal imgURL As String, ByVal description As String)
         Me.id = id
