@@ -138,8 +138,7 @@ Public Class Dao
         Dim quantity As Integer = food.quantity
         Dim imgURL As String = food.imgURL
         Dim description As String = food.description
-        Dim state As String = food.state
-        Dim sql As String = "insert into AllFood(Name,Category,Expiration_Date,Quantity,Img_url,Description,state) values ((@name),(@category),(@expirationDate),(@quantity),(@imgURL),(@description),(@state));"
+        Dim sql As String = "insert into AllFood(Name,Category,Expiration_Date,Quantity,Img_url,Description) values ((@name),(@category),(@expirationDate),(@quantity),(@imgURL),(@description));"
         Dim cmd As New OleDbCommand(sql, conn)
 
         cmd.Parameters.AddWithValue("@name", name)
@@ -148,7 +147,6 @@ Public Class Dao
         cmd.Parameters.AddWithValue("@quantity", quantity)
         cmd.Parameters.AddWithValue("@imgURL", imgURL)
         cmd.Parameters.AddWithValue("@description", description)
-        cmd.Parameters.AddWithValue("@state", state)
 
         Dim isSuccess As Boolean = cmd.ExecuteNonQuery
         Return isSuccess
