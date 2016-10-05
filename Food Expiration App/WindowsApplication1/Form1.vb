@@ -7,6 +7,7 @@ Public Class Form1
     Shared listHistoryFood As List(Of history) 'Record current display history's foods
     Shared listDate_Box As New List(Of Date_Box) 'Record current display Date_Boxs
     Shared isDeleteState As Boolean = False 'Record is currently in delete mode or not
+    Shared listMiniCard As New List(Of MiniCard) 'Record current display MiniCards
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
