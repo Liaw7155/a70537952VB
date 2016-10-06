@@ -1,15 +1,19 @@
 ﻿Public Class Date_Box
+    Public history As history
+    Public isSelectedDelete As Boolean = False
 
-    Sub New(ByRef date1 As Date, ByVal row As Integer, ByVal column As Integer, ByVal rowSpace As Integer, ByVal colunmSpace As Integer)
+    Sub New(ByRef history As history, ByVal row As Integer, ByVal column As Integer, ByVal rowSpace As Integer, ByVal colunmSpace As Integer)
 
         InitializeComponent()
+        lblDate.Text = CType(history.expirationDate, String)
         setLocation(row, column, rowSpace, colunmSpace)
     End Sub
 
     Sub setLocation(ByVal row As Integer, ByVal column As Integer, ByVal rowSpace As Integer, ByVal colunmSpace As Integer)
 
-        Dim x As Integer = (1000 + colunmSpace) * column
-        Dim y As Integer = (153 + rowSpace) * row
+        Dim x As Integer = 0
+        Dim y As Integer = (160 + rowSpace) * row
         Location = New Point(x, y)
     End Sub
+
 End Class

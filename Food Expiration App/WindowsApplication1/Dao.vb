@@ -151,27 +151,17 @@ Public Class Dao
         Dim isSuccess As Boolean = cmd.ExecuteNonQuery
         Return isSuccess
     End Function
-
-    Shared Function adddeletedFood(ByVal food As Food) As Boolean
+    'add the food deleted into database
+    Shared Function adddeletedFood(ByVal idlist As List(Of String)) As Boolean
+        Dim ids As String = Tool.jointArray(idlist)
         If conn.State = conn.State.Closed Then
             conn.Open()
         End If
 
-        Dim name As String = food.name
-        Dim category As String = food.category
-        Dim expirationDate As Date = food.expirationDate
-        Dim quantity As Integer = food.quantity
-        Dim imgURL As String = food.imgURL
-        Dim description As String = food.description
-        Dim sql As String = "insert into AllFood(Name,Category,Expiration_Date,Quantity,Img_url,Description) values ((@name),(@category),(@expirationDate),(@quantity),(@imgURL),(@description));"
+        Dim sql As String = "   INSERT into DeletedFood(Name,Category,Expiration_Date,Quantity,Img_url,Description)
+                                SELECT Name,Category,Expiration_Date,Quantity,Img_url,Description From AllFood
+                                WHERE id in (" & ids & ");"
         Dim cmd As New OleDbCommand(sql, conn)
-
-        cmd.Parameters.AddWithValue("@name", name)
-        cmd.Parameters.AddWithValue("@category", category)
-        cmd.Parameters.AddWithValue("@expirationDate", expirationDate)
-        cmd.Parameters.AddWithValue("@quantity", quantity)
-        cmd.Parameters.AddWithValue("@imgURL", imgURL)
-        cmd.Parameters.AddWithValue("@description", description)
 
         Dim isSuccess As Boolean = cmd.ExecuteNonQuery
         Return isSuccess
@@ -290,4 +280,53 @@ Public Class Dao
 
     End Function
 
+    Shared Function queryHistoryExpiredFood() As List(Of history)
+
+        If conn.State = conn.State.Closed Then
+            conn.Open()
+        End If
+        Dim sql As String = "select * from DeletedFood WHERE state = 'Expired' order by Expiration_Date asc"
+        Dim cmd As New OleDbCommand(sql, conn)
+        Dim reader As OleDbDataReader = cmd.ExecuteReader()
+        Dim historyList As New List(Of history)
+        While reader.Read
+            Dim id As Integer = reader.GetInt32(0)
+            Dim name As String = reader.GetString(1)
+            Dim category As String = reader.GetString(2)
+            Dim expirationDate As Date = reader.GetDateTime(3)
+            Dim quantity As Integer = reader.GetInt32(4)
+            Dim imgURL As String = reader.GetString(5)
+            Dim description As String = reader.GetString(6)
+
+            historyList.Add(New history(id, name, category, expirationDate, quantity, imgURL, description))
+        End While
+
+        Return historyList
+
+    End Function
+
+    Shared Function queryHistoryUsedFood() As List(Of history)
+
+        If conn.State = conn.State.Closed Then
+            conn.Open()
+        End If
+        Dim sql As String = "select * from DeletedFood WHERE state = 'Not Available' order by Expiration_Date asc"
+        Dim cmd As New OleDbCommand(sql, conn)
+        Dim reader As OleDbDataReader = cmd.ExecuteReader()
+        Dim historyList As New List(Of history)
+        While reader.Read
+            Dim id As Integer = reader.GetInt32(0)
+            Dim name As String = reader.GetString(1)
+            Dim category As String = reader.GetString(2)
+            Dim expirationDate As Date = reader.GetDateTime(3)
+            Dim quantity As Integer = reader.GetInt32(4)
+            Dim imgURL As String = reader.GetString(5)
+            Dim description As String = reader.GetString(6)
+
+            historyList.Add(New history(id, name, category, expirationDate, quantity, imgURL, description))
+        End While
+
+        Return historyList
+
+    End Function
 End Class
